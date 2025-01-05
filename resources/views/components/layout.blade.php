@@ -10,24 +10,28 @@
     </head>
     <body class="bg-gray-100">
         <div class="min-h-screen flex flex-col">
-            <header class="bg-gradient-to-r from-green-600 to-green-700 shadow-lg">
+            <header class="bg-gradient-to-r from-green-600 to-green-700 shadow-lg sticky top-0 z-50">   
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center py-6">
                         <div class="flex-shrink-0">
                             <a href="{{ url('/') }}" class="text-2xl font-bold text-white hover:text-yellow-400">Mama's Sari-Sari Store</a>
                         </div>
                         <div class="hidden md:flex space-x-4">
-                            <a href="{{-- route('inventory') --}}" 
-                               class="{{ request()->routeIs('inventory') ? 'bg-yellow-500' : 'bg-green-500' }} text-white px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md">
-                                Inventory
+                            <a href="{{ route('product.index')}}"
+                               class="{{ request()->routeIs('products') ? 'bg-yellow-500' : 'bg-green-500' }} text-white px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md">
+                                Products
+                            </a>
+                            <a href="{{-- route('stocks') --}}" 
+                               class="{{ request()->routeIs('stocks') ? 'bg-yellow-500' : 'bg-green-500' }} text-white px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md">
+                                Stocks
+                            </a>
+                            <a href="{{-- route('utang') --}}" 
+                               class="{{ request()->routeIs('debts') ? 'bg-yellow-500' : 'bg-green-500' }} text-white px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md">
+                                Utang
                             </a>
                             <a href="{{--route('sales') --}}" 
                                class="{{ request()->routeIs('sales') ? 'bg-yellow-500' : 'bg-green-500' }} text-white px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md">
                                 Sales
-                            </a>
-                            <a href="{{-- route('orders') --}}" 
-                               class="{{ request()->routeIs('orders') ? 'bg-yellow-500' : 'bg-green-500' }} text-white px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md">
-                                Orders
                             </a>
                         </div>
                         <div class="md:hidden">
@@ -42,13 +46,17 @@
                 </div>
                 <!-- Mobile Menu -->
                 <div id="mobile-menu" class="md:hidden hidden">
-                    <a href="{{-- route('inventory') --}}" 
-                       class="{{ request()->routeIs('inventory') ? 'bg-yellow-500' : 'bg-green-500' }} text-white text-center block px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md mb-2">
-                        Inventory
+                    <a href="{{ route('product.index')}}""
+                       class="{{ request()->routeIs('products') ? 'bg-yellow-500' : 'bg-green-500' }} text-white text-center block px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md mb-2">
+                        Products
                     </a>
                     <a href="{{--route('sales') --}}" 
-                       class="{{ request()->routeIs('sales') ? 'bg-yellow-500' : 'bg-green-500' }} text-white block px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md text-center mb-2">
-                        Sales
+                       class="{{ request()->routeIs('stocks') ? 'bg-yellow-500' : 'bg-green-500' }} text-white block px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md text-center mb-2">
+                        Stocks
+                    </a>
+                    <a href="{{--route('sales') --}}" 
+                       class="{{ request()->routeIs('debts') ? 'bg-yellow-500' : 'bg-green-500' }} text-white block px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md text-center mb-2">
+                        Utang
                     </a>
                     <a href="{{-- route('orders') --}}" 
                        class="{{ request()->routeIs('orders') ? 'bg-yellow-500' : 'bg-green-500' }} text-white block px-4 py-2 rounded-full hover:bg-yellow-400 transition duration-300 shadow-md text-center mb-2">
