@@ -7,8 +7,20 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="bg-gray-100">
+        @session('success')
+            <div class="bg-green-500 text-white text-center py-2 z-100" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
+                {{ session('message') }}
+            </div>
+        @endsession
+
+        @session('error')
+            <div class="bg-red-500 text-white text-center py-2 z-100" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
+                {{ session('message') }}
+            </div>
+        @endsession
         <div class="min-h-screen flex flex-col">
             <header class="bg-gradient-to-r from-green-600 to-green-700 shadow-lg sticky top-0 z-50">   
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

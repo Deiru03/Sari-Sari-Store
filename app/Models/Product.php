@@ -12,7 +12,10 @@ class Product extends Model
     protected $fillable = [
         "name",
         "description",
-        "price",
+        "orig_price",
+        "your_price",
+        "item_profit",
+        "total_profit",
         "quantity",
     ] ;
 }

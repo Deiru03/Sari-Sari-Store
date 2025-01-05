@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -31,7 +32,32 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $validatedProduct = $request->validate([
+                'product_name' => 'required|string|max:255',
+                'product_description' => 'nullable|string|max:255',
+                'product_orig_price' => 'required|numeric',
+                'product_your_price' => 'required|numeric',
+                'product_quantity' => 'required|integer',
+                'product_profit' => 'required|numeric',
+                'product_total_profit' => 'required|numeric',
+            ]);
+
+            $product = Product::create([
+                'name' => $validatedProduct['product_name'],
+                'description' => $validatedProduct['product_description'],
+                'orig_price' => $validatedProduct['product_orig_price'],
+                'your_price' => $validatedProduct['product_your_price'],
+                'item_profit' => $validatedProduct['product_profit'],
+                'total_profit' => $validatedProduct['product_total_profit'],
+                'quantity' => $validatedProduct['product_quantity'],
+            ]);
+
+            return redirect()->route('product.index')->with('success', 'Product Added Successfully');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Failed to add product');
+        }
     }
 
     /**
