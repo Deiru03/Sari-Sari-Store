@@ -53,7 +53,7 @@ class ProductController extends Controller
                 'quantity' => $validatedProduct['product_quantity'],
             ]);
 
-            return redirect()->route('product.index')->with('success', 'Product Added Successfully');
+            return redirect()->route('product.index', $product)->with('success', 'Product Added Successfully');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Failed to add product');

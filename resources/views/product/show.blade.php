@@ -24,6 +24,19 @@
                         <span class="ml-1 text-gray-500">units</span>
                     </div>
                 </div>
+
+                <div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <span class="text-gray-500">Per Item Profits: </span>
+                            <span class="ml-2 text-2xl font-bold text-blue-600">₱<span x-text="currentProduct.item_profit"></span></span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-gray-500">Total Profits will be gain:</span>
+                            <span class="ml-2 text-2xl font-bold text-blue-600">₱<span x-text="currentProduct.total_profit"></span></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

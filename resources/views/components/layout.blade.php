@@ -10,17 +10,6 @@
         <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="bg-gray-100">
-        @session('success')
-            <div class="bg-green-500 text-white text-center py-2 z-100" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
-                {{ session('message') }}
-            </div>
-        @endsession
-
-        @session('error')
-            <div class="bg-red-500 text-white text-center py-2 z-100" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
-                {{ session('message') }}
-            </div>
-        @endsession
         <div class="min-h-screen flex flex-col">
             <header class="bg-gradient-to-r from-green-600 to-green-700 shadow-lg sticky top-0 z-50">   
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,6 +65,27 @@
                     </a>
                 </div>
             </header>
+
+            @if (session()->has('success'))
+                <div x-data="{ show: true }" 
+                     x-show="show" 
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform -translate-y-2"
+                     x-transition:enter-end="opacity-100 transform translate-y-0"
+                     x-transition:leave="transition ease-in duration-300"
+                     x-transition:leave-start="opacity-100 transform translate-y-0"
+                     x-transition:leave-end="opacity-0 transform -translate-y-2"
+                     x-init="setTimeout(() => show = false, 3000)"
+                     class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg"
+                     style="z-index: 999;">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p>{{ session('success') }}</p>
+                    </div>
+                </div>
+            @endif
     
             <!-- Main Content -->
             <main class="flex-grow max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
