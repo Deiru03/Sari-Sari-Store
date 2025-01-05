@@ -14,7 +14,7 @@
                 </div>
                 <div class="bg-green-100 p-4 rounded-lg">
                     <h3 class="font-semibold text-green-800">Products</h3>
-                    <p class="text-2xl font-bold text-green-600">0</p>
+                    <p class="text-2xl font-bold text-green-600">{{ $totalProducts }}</p>
                 </div>
                 <div class="bg-yellow-100 p-4 rounded-lg">
                     <h3 class="font-semibold text-yellow-800">Orders Today</h3>

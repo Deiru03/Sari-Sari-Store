@@ -69,7 +69,7 @@
                             </svg>
                         </button>
                     </div>
-                    <x-add-product-form />
+                    <x-products.add-product-form />
                 </div>
             </div>
 
@@ -140,12 +140,13 @@
                                     class="bg-green-500 hover:bg-green-700 text-white text-xs font-bold py-1.5 px-2 rounded transition duration-300">
                                     View
                                 </button>
-                                <form method="POST" action="{{ route('product.destroy', $product) }}" class="w-full">
+                                <button @click="if (confirm('Are you sure you want to delete this product?')) { document.getElementById('delete-form-'+{{ $product->id }}).submit(); }"
+                                    class="w-full bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-1.5 px-2 rounded transition duration-300">
+                                    Delete
+                                </button>
+                                <form id="delete-form-{{ $product->id }}" method="POST" action="{{ route('product.destroy', $product) }}" class="hidden">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="w-full bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-1.5 px-2 rounded transition duration-300">
-                                        Delete
-                                    </button>
                                 </form>
                             </div>
                         </div>
