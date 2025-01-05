@@ -1,6 +1,6 @@
 <div>
     <h1>Edit Product</h1>
-    <form method="POST" :action="`/products/{$currentProduct->id}`" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+    <form method="POST" :action="'/product/' + currentProduct.id" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
         @csrf
         @method('PUT')
         <div class="mb-4">
@@ -15,11 +15,15 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-                <label for="price" class="block text-gray-700 font-bold mb-2">Price</label>
-                <input type="number" name="product_price" id="price" step="0.01" x-model="currentProduct.price" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label for="orig_price" class="block text-gray-700 font-bold mb-2">Original Price</label>
+                <input type="number" name="product_orig_price" id="orig_price" step="0.01" x-model="currentProduct.orig_price" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
             <div>
-                <label for="quantity" class="block text-gray-700 font-bold mb-2">Stock</label>
+                <label for="your_price" class="block text-gray-700 font-bold mb-2">My Price</label>
+                <input type="number" name="product_your_price" id="your_price" step="0.01" x-model="currentProduct.your_price" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div>
+                <label for="quantity" class="block text-gray-700 font-bold mb-2">Current Stock</label>
                 <input type="number" name="product_quantity" id="quantity" x-model="currentProduct.quantity" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
         </div>

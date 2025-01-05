@@ -73,7 +73,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view("product.edit");
+        return view("product.edit", compact('product'));
     }
 
     /**
@@ -81,7 +81,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        try{
+            $validatedProduct = $request->validate([
+                'product_name' => 'required|string|max:255',
+                'product_description' => 'nullable|string|max:255',
+                'product_orig_price' => 'required|numeric',
+                'product_your_price' => 'required|numeric',
+                'product_quantity' => 'required|integer',
+            ]);
+
+            $item_profit = $validatedProduct['product_your_price'] - $validatedProduct['product_orig_price'];
+            $total_profit = $item_profit * $validatedProduct['product_quantity'];
+
+            $product->update([
+                'name' => $validatedProduct['product_name'],
+                'description' => $validatedProduct['product_description'],
+                'orig_price' => $validatedProduct['product_orig_price'],
+                'your_price' => $validatedProduct['product_your_price'],
+                'quantity' => $validatedProduct['product_quantity'],
+                'item_profit'=> $item_profit,
+                'total_profit'=> $total_profit,
+            ]);
+
+            return redirect()->route('product.index', $product)->with('success', 'Product Updated Successfully');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Failed to add product');
+        }
     }
 
     /**
